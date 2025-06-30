@@ -16,10 +16,37 @@ export default defineType({
   fields: [
     defineField({
       name: 'title',
-      title: 'Назва туру',
+      title: 'Назва туру для картки товару на сторінці всіх турів',
       type: 'string',
       validation: (rule: StringRule) => rule.required(),
     }),
+    defineField({
+      name: 'tourPageTitle',
+      title: 'Заголовок туру для сторінки окремого туру (складається з трьох частин)',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'part1',
+          title: 'Частина 1',
+          type: 'string',
+          validation: (rule: StringRule) => rule.required(),
+        }),
+        defineField({
+          name: 'part2',
+          title: 'Частина 2',
+          type: 'string',
+          validation: (rule: StringRule) => rule.required(),
+        }),
+        defineField({
+          name: 'part3',
+          title: 'Частина 3',
+          type: 'string',
+          validation: (rule: StringRule) => rule.required(),
+        }),
+      ],
+      validation: (rule: ObjectRule) => rule.required(),
+    }),
+
     defineField({
       name: 'slug',
       title: 'Слаг',
@@ -280,6 +307,38 @@ export default defineType({
       type: 'array',
       of: [{type: 'string'}],
       validation: (rule: ArrayRule<string>) => rule.unique().min(0),
+    }),
+    defineField({
+      name: 'season',
+      title: 'Сезон',
+      type: 'array',
+      of: [
+        {
+          type: 'string',
+          options: {
+            list: [
+              {title: 'Зима', value: 'зима'},
+              {title: 'Весна', value: 'весна'},
+              {title: 'Літо', value: 'літо'},
+              {title: 'Осень', value: 'осень'},
+            ],
+          },
+        },
+      ],
+      validation: (rule) => rule.required().min(1).error('Потрібно вибрати щонайменше один сезон'),
+    }),
+    defineField({
+      name: 'tourType',
+      title: 'Тип тура',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Групповые туры', value: 'групповые туры'},
+          {title: 'VIP туры', value: 'vip туры'},
+        ],
+        layout: 'radio',
+      },
+      validation: (rule) => rule.required(),
     }),
   ],
   preview: {
