@@ -161,13 +161,24 @@ export default defineType({
               name: 'accommodation',
               title: 'Проживання',
               type: 'string',
-              validation: (rule: StringRule) => rule.required(),
             }),
           ],
+          preview: {
+            select: {
+              title: 'title',
+              dayNumber: 'dayNumber',
+            },
+            prepare({title, dayNumber}) {
+              return {
+                title: `День ${dayNumber}. ${title}`,
+              }
+            },
+          },
         }),
       ],
       validation: (rule: ArrayRule<unknown>) => rule.required().min(1),
     }),
+
     defineField({
       name: 'gallery',
       title: 'Галерея зображень',
@@ -319,7 +330,7 @@ export default defineType({
             list: [
               {title: 'Зима', value: 'зима'},
               {title: 'Весна', value: 'весна'},
-              {title: 'Літо', value: 'літо'},
+              {title: 'Лето', value: 'лето'},
               {title: 'Осень', value: 'осень'},
             ],
           },
