@@ -106,9 +106,9 @@ export default defineType({
       type: 'string',
       options: {
         list: [
-          {title: 'Низкая', value: 'низкая'},
-          {title: 'Средняя', value: 'средняя'},
-          {title: 'Высокая', value: 'высокая'},
+          {title: 'Низкая', value: 'Низкая'},
+          {title: 'Средняя', value: 'Средняя'},
+          {title: 'Высокая', value: 'Высокая'},
         ],
         layout: 'radio',
         direction: 'horizontal',
@@ -178,7 +178,22 @@ export default defineType({
       ],
       validation: (rule: ArrayRule<unknown>) => rule.required().min(1),
     }),
-
+    defineField({
+      name: 'image',
+      title: 'Картинка для баннера на сторінці окремого туру',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alt текст',
+          type: 'string',
+        },
+      ],
+      validation: (Rule) => Rule.required().error('Це поле обовʼязкове'),
+    }),
     defineField({
       name: 'gallery',
       title: 'Галерея зображень',
