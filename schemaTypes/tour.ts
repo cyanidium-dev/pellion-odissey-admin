@@ -339,6 +339,18 @@ export default defineType({
       validation: (rule) => rule.required().min(1).error('Потрібно вибрати щонайменше один сезон'),
     }),
     defineField({
+      name: 'years',
+      title: 'Роки проведення туру',
+      type: 'array',
+      of: [
+        {
+          type: 'string',
+        },
+      ],
+      validation: (rule: ArrayRule<string>) =>
+        rule.required().min(1).error('Потрібно вибрати щонайменше один рік'),
+    }),
+    defineField({
       name: 'tourType',
       title: 'Тип тура',
       type: 'string',
@@ -350,6 +362,13 @@ export default defineType({
         layout: 'radio',
       },
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'isPopular',
+      title: 'Популярний тур',
+      type: 'boolean',
+      initialValue: false,
+      description: 'Позначити як популярний тур',
     }),
   ],
   preview: {
