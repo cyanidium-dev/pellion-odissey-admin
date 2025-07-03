@@ -24,6 +24,10 @@ export default defineConfig({
               .title('Відгуки')
               .child(S.documentList().title('Відгуки').filter('_type == "review"')),
             S.divider(),
+            S.listItem()
+              .title('Фотозвіти')
+              .child(S.documentList().title('Фотозвіти').filter('_type == "report"')),
+            S.divider(),
             S.listItem().title('Засновники').child(
               S.editor().id('founders').schemaType('founders').documentId('foundersSingleton'), // Єдиний екземпляр
             ),
