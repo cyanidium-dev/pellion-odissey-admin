@@ -389,7 +389,7 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
-      media: 'gallery.0',
+      media: 'gallery.0.asset',
     },
     prepare({title, media}) {
       return {
