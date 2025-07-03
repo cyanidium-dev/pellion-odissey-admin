@@ -19,6 +19,14 @@ export default defineConfig({
             S.listItem()
               .title('Тури')
               .child(S.documentList().title('Тури').filter('_type == "tour"')),
+            S.divider(),
+            S.listItem()
+              .title('Відгуки')
+              .child(S.documentList().title('Відгуки').filter('_type == "review"')),
+            S.divider(),
+            S.listItem().title('Засновники').child(
+              S.editor().id('founders').schemaType('founders').documentId('foundersSingleton'), // Єдиний екземпляр
+            ),
           ]),
     }),
     visionTool(),
